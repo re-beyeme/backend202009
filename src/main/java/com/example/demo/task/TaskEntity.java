@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.apache.tomcat.jni.Local;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +15,9 @@ import java.util.List;
 
 @Entity
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TaskEntity {
+@Table(name = "TaskEntity")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class TaskEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "TaskEntity_id")
@@ -27,6 +30,8 @@ public class TaskEntity {
     private TaskPriority priority;
     @Column(name = "TaskEntity_Fecha_Creacion")
     private LocalDate fechaCreacion;
+    @Column(name = "TypeTask")
+    private String tipoTarea;
 
     @OneToMany(cascade = CascadeType.ALL)
     @Getter
@@ -36,12 +41,13 @@ public class TaskEntity {
     public TaskEntity(){
 
     }
-    public TaskEntity(String description,boolean completed, TaskPriority priority,List<SubTaskEntity>subTaskEntities, LocalDate date){
+    public TaskEntity(String description,boolean completed, TaskPriority priority,List<SubTaskEntity>subTaskEntities, LocalDate date,String tipoTarea){
         this.description=description;
         this.completed=completed;
         this.priority=priority;
         this.subTaskEntityList=subTaskEntities;
         this.fechaCreacion=date;
+        this.tipoTarea=tipoTarea;
     }
 
     public Long getId() {

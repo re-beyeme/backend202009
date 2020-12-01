@@ -29,11 +29,11 @@ public class SubTaskController  {
     public void init(){
         boolean complet=true;
         List<SubTaskEntity>subTaskEntities=new ArrayList<>();
-        SubTaskEntity subTask1=new SubTaskEntity( "Primer subTas",complet, TaskPriority.LOW,subTaskEntities, LocalDate.now());
+        SubTaskEntity subTask1=new SubTaskEntity( "Primer subTas",complet, TaskPriority.LOW,subTaskEntities, LocalDate.now(),"Subtarea");
         subTaskEntities.add(subTask1);
         subTask1.setSubTaskEntityList(subTaskEntities);
         subTaskService.saveSubTaskEntity(subTask1);
-        SubTaskEntity subTask2=new SubTaskEntity(" Segundo subTas",complet, TaskPriority.MEDIUM,subTaskEntities, LocalDate.now());
+        SubTaskEntity subTask2=new SubTaskEntity(" Segundo subTas",complet, TaskPriority.MEDIUM,subTaskEntities, LocalDate.now(),"SubTarea");
         subTaskService.saveSubTaskEntity(subTask2);
     }
     // crear una sub tarea

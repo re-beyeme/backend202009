@@ -39,17 +39,17 @@ public class TaskController implements CommandLineRunner {
 
         DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ISO_LOCAL_DATE;
         /// CREACIION DE SUBTAREAS y SUBTAREAS
-        SubTaskEntity subTaskEntity=new SubTaskEntity("Soy primerSubTas",complet,TaskPriority.LOW,subTaskEntityList,date);
+        SubTaskEntity subTaskEntity=new SubTaskEntity("Soy primerSubTas",complet,TaskPriority.LOW,subTaskEntityList,date,"SubTask");
         subTaskEntityList.add(subTaskEntity);
         subTaskEntity.setSubTaskEntityList(subTaskEntityList);
         subTaskService.saveSubTaskEntity(subTaskEntity);// SubTask a la bbdd
-        taskService.saveTaskEntity(new TaskEntity("Primera entidad de Task",complet, TaskPriority.HIGH,subTaskEntityList,date));
+        taskService.saveTaskEntity(new TaskEntity("Primera entidad de Task",complet, TaskPriority.HIGH,subTaskEntityList,date,"SubTask"));
         // SubTask 2 y task 2
-        SubTaskEntity subTaskEntity1=new SubTaskEntity("Soy segundoSubTas",complet,TaskPriority.MEDIUM,subTaskEntityList,date);
+        SubTaskEntity subTaskEntity1=new SubTaskEntity("Soy segundoSubTas",complet,TaskPriority.MEDIUM,subTaskEntityList,date,"SubTask");
         subTaskEntityList.add(subTaskEntity1);
         subTaskEntity1.setSubTaskEntityList(subTaskEntityList);
         subTaskService.saveSubTaskEntity(subTaskEntity1);// SubTask 2 a la bbdd
-        taskService.saveTaskEntity(new TaskEntity("Segunda entidad de Task",false, TaskPriority.LOW,subTaskEntityList,date));
+        taskService.saveTaskEntity(new TaskEntity("Segunda entidad de Task",false, TaskPriority.LOW,subTaskEntityList,date,"SubTask"));
     }
 // crear una tarea
     @PostMapping(value = "/")

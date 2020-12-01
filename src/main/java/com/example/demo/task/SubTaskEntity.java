@@ -10,20 +10,18 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Builder
+
 public class SubTaskEntity extends TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "SubTask_Id")
     private Long id;
 
-    public SubTaskEntity() {
+    public SubTaskEntity(){
         super();
     }
-    public SubTaskEntity(String descripcion, boolean completed, TaskPriority priority, List<SubTaskEntity> subTaskEntities, LocalDate date){
-        super(descripcion, completed,priority,subTaskEntities,date);
+    public SubTaskEntity(String description,boolean completed, TaskPriority priority,List<SubTaskEntity>subTaskEntities, LocalDate date,String tipoTarea) {
+     super(description,completed,priority,subTaskEntities, date,tipoTarea);
     }
-    public  String toString(){
-        return super.toString();
-    }
+
 }
