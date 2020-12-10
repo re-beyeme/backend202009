@@ -1,47 +1,47 @@
 package com.example.demo.task;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
+@Table(name = "TaskEntity")
+@Getter
+@Setter
+@ToString
 public class TaskEntity {
 
-    @Id
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "TASK_GEN")
+	@Column(name = "task_entity_id")
+	private Long id;
 
-    private String description;
-    private boolean completed;
-    private TaskPriority priority;
+	@Column(name = "task_entity_descripcion")
+	private String description;
 
-    public int getId() {
-        return id;
-    }
+	@Column(name = "task_entity_completed")
+	private boolean completed;
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	@Column(name = "task_entity_priority")
+	private TaskPriority priority;
 
-    public String getDescription() {
-        return description;
-    }
+	@Column(name = "task_entity_created_date")
+	private LocalDate createdDate;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<SubTaskEntity> subTasks;
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public TaskPriority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(TaskPriority priority) {
-        this.priority = priority;
-    }
 }
